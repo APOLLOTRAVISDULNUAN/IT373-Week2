@@ -21,3 +21,8 @@ def gallery(request):#for images
     images = ['image.jpg', 'image2.jpg', 'image3.jpg']
     return render(request , 'gallery.html', {'images': images})
 
+def page_not_found_view(request, exception):
+    return render(request , '404.html', status=404)
+
+def server_error_view(request):
+    return render(request , '500.html', status=500)
