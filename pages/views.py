@@ -16,3 +16,8 @@ def about(request):
 
 def hello(request, name):
     return render(request, 'hello.html', {'name': name})
+
+def gallery(request):#for images
+    images = ['image.jpg', 'image2.jpg', 'image3.jpg']
+    return render(request , 'gallery.html', {'images': images})
+
