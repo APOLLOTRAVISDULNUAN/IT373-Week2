@@ -1,22 +1,120 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My site{% endblock title %}My site</title>
-    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>{% block title %}My site{% endblock title %}</title>
+
+    <style>
+    /* ===== Global Styles ===== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    html, body {
+        height: 100%; /* Make sure the body spans full height */
+    }
+
+    body {
+        display: flex;
+        flex-direction: column; /* Stack navbar, main, footer vertically */
+        min-height: 100vh;
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    main {
+        flex: 1; /* This pushes the footer to the bottom */
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* ===== Navigation Bar ===== */
+    .navbar {
+        background-color: #2b2d42;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 0;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: #edf2f4;
+        text-decoration: none;
+        margin: 0 25px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .navbar a::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #00b4d8;
+        transition: width 0.3s ease;
+    }
+
+    .navbar a:hover {
+        color: #00b4d8;
+    }
+
+    .navbar a:hover::after {
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            padding: 10px;
+        }
+        .navbar a {
+            margin: 10px 0;
+        }
+    }
+
+    /* ===== Footer ===== */
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #2b2d42;
+        color: #edf2f4;
+        margin-top: auto; /* Keeps footer at the bottom */
+    }
+    </style>
+
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'gallery' %}">Gallery</a>
-    </nav> 
+        <a href="{% url 'announcement_list' %}">Announcement</a>
+    </nav>
+
     <main>
         {% block content %}
         {% endblock content %}
     </main>
-    
+
+    <footer>
+        <p>&copy; 2025 My Site | All rights reserved.</p>
+    </footer>
 </body>
 </html>

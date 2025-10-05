@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Announcements{% endblock %}
+{% block content %}
+<h1 text align = center>Announcements</h1>
+<ul>
+    {% for a in announcements %}
+        <li><a href="/announcements/{{ a.id }}/">{{ a.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
